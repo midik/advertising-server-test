@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="@types/cheerio" level="application" />
+    <orderEntry type="library" name="@types/object-path" level="application" />
+    <orderEntry type="library" name="@types/got" level="application" />
+    <orderEntry type="library" name="@types/react" level="application" />
+    <orderEntry type="library" name="@types/react-redux" level="application" />
+    <orderEntry type="library" name="@types/redux-devtools" level="application" />
+    <orderEntry type="library" name="@types/winston" level="application" />
+    <orderEntry type="library" name="@types/koa" level="application" />
+    <orderEntry type="library" name="@types/koa-passport" level="application" />
+    <orderEntry type="library" name="@types/koa-router" level="application" />
+    <orderEntry type="library" name="@types/sequelize" level="application" />
+    <orderEntry type="library" name="@types/humps" level="application" />
+  </component>
+</module>
