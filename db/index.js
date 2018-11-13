@@ -49,6 +49,6 @@ export const connection = con;
  * setting up the models
  */
 for (const [modelName, model] of Object.entries(models)) {
-    log.debug(`...${modelName}`);
+    // log.debug(`...${modelName}`);
     op.set(modelsList, modelName, model(connection, Sequelize));
 }

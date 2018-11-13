@@ -30,7 +30,6 @@ export default (sequelize, DataTypes) => {
     });
 
 
-
     //
     //
     // Url.belongsTo(sequelize.models.source, {

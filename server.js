@@ -5,12 +5,11 @@ import Cors from '@koa/cors';
 import BodyParser from 'koa-bodyparser';
 import Helmet from 'koa-helmet';
 import respond from 'koa-respond';
-import passport from 'koa-passport';
+// import passport from 'koa-passport';
 import routes from './routes';
 import config from './config';
 import log from './lib/log';
 import logRequests from './lib/logRequests';
-import * as auth from './lib/authentication/auth';  // do not remove
 
 
 const env = process.env.NODE_ENV || 'dev',
@@ -32,7 +31,7 @@ app.use(BodyParser({
     }
 }));
 
-app.use(passport.initialize());
+// app.use(passport.initialize());
 
 app.use(respond());
 

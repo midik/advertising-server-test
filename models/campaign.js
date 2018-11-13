@@ -11,7 +11,7 @@ export default (sequelize, DataTypes) => {
             type: DataTypes.STRING(100),
             allowNull: false
         },
-        started: {
+        enabled: {
             type: DataTypes.BOOLEAN,
             defaultValue: true
         }
