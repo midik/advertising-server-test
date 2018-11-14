@@ -4,7 +4,6 @@ import {
   Button
 } from 'reactstrap';
 import PropTypes from "prop-types";
-import AddArticle from "./AddArticle";
 
 
 class AddCampaign extends Component {

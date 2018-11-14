@@ -6,10 +6,6 @@ import {
 } from 'reactstrap';
 import PropTypes from "prop-types";
 
-// import Results from './Results';
-// import ProgressBar from "./ProgressBar";
-
-
 class Article extends Component {
 
   constructor(props) {
@@ -18,7 +14,6 @@ class Article extends Component {
     this.state = {
       collapsed: true,
       sure: false
-      // resultsReady: false
     };
 
     this.onToggle = this.onToggle.bind(this);
@@ -27,11 +22,6 @@ class Article extends Component {
 
   onToggle() {
     this.setState({collapsed: !this.state.collapsed});
-
-    // if (!this.state.resultsReady) {
-    //   this.props.onGetResults(this.props.sourceId, this.props.id);
-    // }
-    // this.setState({resultsReady: true});
   }
 
   async onDeleteArticle() {
@@ -71,6 +61,14 @@ class Article extends Component {
               <Button className="btn btn-square btn-ghost-warning mr-1" size="sm" onClick={this.onEditArticle} disabled>Edit</Button>
               <Button className="btn btn-square btn-ghost-danger mr-1" size="sm" onClick={this.onDeleteArticle}>{this.state.sure ? 'Really?' : 'Delete'}</Button>
             </div>
+          </div>
+        </div>
+
+        <div className={`col-md-12 mt-2 ${this.state.collapsed ? "collapse" : ""}`}>
+          <div className="container-fluid">
+
+            <textarea disabled className="form-control" id="content" rows="5" onChange={this.onContentChange} defaultValue={this.props.content} />
+
           </div>
         </div>
 

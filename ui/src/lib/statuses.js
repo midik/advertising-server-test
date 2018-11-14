@@ -1,7 +1,7 @@
 export default {
   enabled: {
     name: 'enabled',
-    style: 'primary'
+    style: 'success'
   },
   disabled: {
     name: 'disabled',

@@ -1,22 +1,14 @@
 import React, {Component} from 'react';
-import classnames from 'classnames';
+import PropTypes from "prop-types";
 
 import {
   Badge,
-  Button,
-  TabContent,
-  TabPane,
-  Nav,
-  NavItem,
-  NavLink,
+  Button
 } from 'reactstrap';
 
 import status from '../lib/statuses';
 import Article from './Article';
-// import RuleItem from './RuleItem';
 import AddArticle from './AddArticle';
-import PropTypes from "prop-types";
-// import Options from './Options';
 
 
 class Campaign extends Component {
@@ -76,20 +68,26 @@ class Campaign extends Component {
       <div className="row">
         <div className="col-md-12">
 
-          <div className="row hover">
-            <div className="col pb-1 pointer" onClick={this.onToggle}>
-              <span>{this.props.title}</span>
+          <div className="row hover pt-2">
 
-              <div className="text-muted">
-                {/* <Badge color={this.state.status.style}>{this.state.status.name}</Badge> */}
+            <div className="col-md-1 text-secondary pt-1" onClick={this.onToggle} title="Click to open/close this">
+
+              <div className="container">
+                <div className="row no-gutters">
+                  <Badge color={this.props.status.style}>{this.props.status.name}</Badge>
+                </div>
               </div>
+
             </div>
 
-            <div className="col pt-2" role="group">
+            <div className="col pb-1 pointer" onClick={this.onToggle}>
+              {this.props.title}
+            </div>
+
+            <div className="col pb-1" role="group">
               <div className="pull-right">
                 <Button className="btn btn-square btn-ghost-warning mr-2" size="sm" onClick={this.onEditCampaign} disabled>Edit</Button>
                 <Button className="btn btn-square btn-ghost-danger mr-2" size="sm" onClick={this.onDeleteCampaign}>{this.state.sure ? 'Really?' : 'Delete'}</Button>
-                {/* <Button className="btn btn-square btn-outline-info" size="sm" onClick={this.onStart}>Scrap</Button> */}
               </div>
             </div>
           </div>
@@ -97,33 +95,10 @@ class Campaign extends Component {
           <div className="row mt-1 mb-1">
             <div className={`col-md-12 ${this.state.collapsed ? "collapse" : ""}`}>
 
-              <Nav tabs>
-                <NavItem>
-                  <NavLink className={classnames({active: this.state.activeTab === '1'})} onClick={() => { this.toggle('1'); }}>Articles</NavLink>
-                </NavItem>
-
-                {/*<NavItem>*/}
-                  {/*<NavLink className={classnames({active: this.state.activeTab === '2'})} onClick={() => { this.toggle('2'); }}>Rule</NavLink>*/}
-                {/*</NavItem>*/}
-                {/*<NavItem>*/}
-                  {/*<NavLink className={classnames({active: this.state.activeTab === '3'})} onClick={() => { this.toggle('3'); }}>Options</NavLink>*/}
-                {/*</NavItem>*/}
-
-              </Nav>
-              <TabContent activeTab={this.state.activeTab}>
-
-                <TabPane tabId="1">
-                  {articleItems.length ? articleItems :
-                    <div className="col-md-12 loading">No articles here</div>
-                  }
-                  <AddArticle campaignId={this.props.id} onSaveArticle={this.props.onSaveArticle} />
-                </TabPane>
-
-                <TabPane tabId="3">
-                  {/* <Options /> */}Nothing Here Yet
-                </TabPane>
-
-              </TabContent>
+              {articleItems.length ? articleItems :
+                <div className="col-md-12 loading text-center">No articles here</div>
+              }
+              <AddArticle campaignId={this.props.id} onSaveArticle={this.props.onSaveArticle} />
 
             </div>
           </div>
