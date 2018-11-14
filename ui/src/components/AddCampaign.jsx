@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {
   Button
 } from 'reactstrap';
+import Article from "./Article";
 
 
 class AddCampaign extends Component {
@@ -42,21 +43,21 @@ class AddCampaign extends Component {
     return (
 
       <div>
-        <div className={"row mb-1 " + (!this.state.collapsed ? "collapse" : "")}>
+        <div className={`row mb-1 ${!this.state.collapsed ? "collapse" : ""}`}>
           <div className="col-md-12">
             <Button className="btn btn-square btn-outline-success pull-right" size="sm" onClick={this.onToggle}>Add
               Source</Button>
           </div>
         </div>
 
-        <div className={"row mb-1 " + (this.state.collapsed ? "collapse" : "")}>
+        <div className={`row mb-1 ${this.state.collapsed ? "collapse" : ""}`}>
           <div className="col-md-12">
 
             <form className="form-row">
 
               <div className="col-7">
                 <label className="sr-only" htmlFor="sourceName">Name</label>
-                <input type="text" className={"form-control mb-2 mr-sm-2 " + (this.state.isValid ? "is-valid" : "is-invalid")}
+                <input type="text" className={`form-control mb-2 mr-sm-2 ${this.state.isValid ? "is-valid" : "is-invalid"}`}
                        id="sourceName" placeholder="Source name" onChange={this.onNameChange} value={this.state.name}/>
                 <div className="valid-feedback">Looks good!</div>
                 <div className="invalid-feedback">Please provide a name</div>
@@ -78,5 +79,8 @@ class AddCampaign extends Component {
     );
   }
 }
+
+// TODO
+AddCampaign.propTypes = {};
 
 export default AddCampaign;

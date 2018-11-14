@@ -31,6 +31,7 @@ class Error extends Component {
   }
 }
 
-// Result.propTypes = {};
+// TODO
+Error.propTypes = {};
 
 export default Error;

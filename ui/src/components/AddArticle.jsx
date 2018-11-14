@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {
   Button
 } from 'reactstrap';
+import AddCampaign from "./AddCampaign";
 
 
 class AddArticle extends Component {
@@ -42,20 +43,20 @@ class AddArticle extends Component {
     return (
 
       <div className="mt-1">
-        <div className={"row mb-1 " + (!this.state.collapsed ? "collapse" : "")}>
+        <div className={`row mb-1 ${!this.state.collapsed ? "collapse" : ""}`}>
           <div className="col-md-12">
             <Button className="btn btn-sm btn-square btn-outline-success pull-right" onClick={this.onToggle}>Add URL</Button>
           </div>
         </div>
 
-        <div className={"row mb-1 " + (this.state.collapsed ? "collapse" : "")}>
+        <div className={`row mb-1 ${this.state.collapsed ? "collapse" : ""}`}>
           <div className="col-md-12">
 
             <form className="form-row">
 
               <div className="col-8 offset-1">
                 <label className="sr-only" htmlFor="urlLink">Link</label>
-                <input type="text" className={"form-control mb-2 mr-sm-2 " + (this.state.isValid ? "is-valid" : "is-invalid")}
+                <input type="text" className={`form-control mb-2 mr-sm-2 ${this.state.isValid ? "is-valid" : "is-invalid"}`}
                        id="urlLink" placeholder="Link" onChange={this.onNameChange} value={this.state.link} />
                 <div className="valid-feedback">Looks good!</div>
                 <div className="invalid-feedback">Please provide a link</div>
@@ -76,5 +77,8 @@ class AddArticle extends Component {
     );
   }
 }
+
+// TODO
+AddArticle.propTypes = {};
 
 export default AddArticle;

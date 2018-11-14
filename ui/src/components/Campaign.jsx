@@ -12,13 +12,13 @@ import {
 } from 'reactstrap';
 
 import status from '../lib/statuses';
-import ArticleItem from './ArticleItem';
+import Article from './Article';
 // import RuleItem from './RuleItem';
 import AddArticle from './AddArticle';
 // import Options from './Options';
 
 
-class ListItem extends Component {
+class Campaign extends Component {
 
   constructor(props) {
     super(props);
@@ -34,17 +34,6 @@ class ListItem extends Component {
     this.onStart = this.onStart.bind(this);
     this.onDeleteSource = this.onDeleteSource.bind(this);
   }
-
-  // componentDidUpdate(prevStatus) {
-  //
-  //   let result = status.idle;
-  //
-  //   for (const article of Object.values(this.props.articles)) {
-  //     if (url.status && url.status.priority > result.priority) result = url.status;
-  //   }
-  //
-  //   if (result !== this.state.status) this.setState({status: result});
-  // }
 
   onToggle() {
     this.setState({collapsed: !this.state.collapsed});
@@ -75,7 +64,7 @@ class ListItem extends Component {
   render() {
 
     const urlLines = Object.entries(this.props.articles).map(([id, article]) =>
-      (<ArticleItem
+      (<Article
         key={id}
         id={id}
         campaignId={this.props.id}
@@ -135,7 +124,7 @@ class ListItem extends Component {
                 </TabPane>
 
                 <TabPane tabId="2">
-                  <ArticleItem
+                  <Article
                     campaignId={this.props.id}
                     article={this.props.article}
                     onSaveRule={this.props.onSaveArticle}
@@ -157,4 +146,7 @@ class ListItem extends Component {
   }
 }
 
-export default ListItem;
+// TODO
+Campaign.propTypes = {};
+
+export default Campaign;

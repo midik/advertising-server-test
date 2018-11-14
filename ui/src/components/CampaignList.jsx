@@ -5,13 +5,13 @@ import {
   Button
 } from 'reactstrap';
 
-import ListItem from './ListItem';
+import Campaign from './Campaign';
 import AddCampaign from './AddCampaign';
 // import Error from './Error';
 import ProgressBar from './ProgressBar';
 
 
-class List extends Component {
+class CampaignList extends Component {
 
   componentDidMount() {
     this.props.onRefresh();
@@ -19,17 +19,19 @@ class List extends Component {
 
   render() {
 
-    const campaignItems = Object.entries(this.props.campaigns).map(([id, campaign]) => (<ListItem
-      key={id}
-      id={id}
-      title={campaign.title}
-      articles={campaign.articles}
-      status={campaign.status}
-      collapsed
-      onDeleteCampaign={this.props.onDeleteCampaign}
-      onSaveArticle={this.props.onSaveArticle}
-      onDeleteArticle={this.props.onDeleteArticle}
-    />));
+    const campaignItems = Object.entries(this.props.campaigns).map(([id, campaign]) => (
+      <Campaign
+        key={id}
+        id={id}
+        title={campaign.title}
+        articles={campaign.articles}
+        status={campaign.status}
+        collapsed
+        onDeleteCampaign={this.props.onDeleteCampaign}
+        onSaveArticle={this.props.onSaveArticle}
+        onDeleteArticle={this.props.onDeleteArticle}
+      />)
+    );
 
     const noCampaigns = (
       <div className="row">
@@ -55,7 +57,7 @@ class List extends Component {
   }
 }
 
-List.propTypes = {
+CampaignList.propTypes = {
   campaigns: PropTypes.objectOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
@@ -68,4 +70,4 @@ List.propTypes = {
   onDeleteArticle: PropTypes.func.isRequired
 };
 
-export default List;
+export default CampaignList;

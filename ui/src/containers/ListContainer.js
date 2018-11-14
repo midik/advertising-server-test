@@ -10,7 +10,7 @@ import {
 
 import {getCampaignsList} from '../lib/campaigns';
 
-import List from '../components/List';
+import CampaignList from '../components/CampaignList';
 
 
 function mapStateToProps(state) {
@@ -37,6 +37,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const ListContainer = connect(mapStateToProps, mapDispatchToProps)(List);
+const ListContainer = connect(mapStateToProps, mapDispatchToProps)(CampaignList);
 
 export default ListContainer;

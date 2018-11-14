@@ -9,7 +9,7 @@ import {
 // import ProgressBar from "./ProgressBar";
 
 
-class ArticleItem extends Component {
+class Article extends Component {
 
   constructor(props) {
     super(props);
@@ -73,32 +73,12 @@ class ArticleItem extends Component {
           </div>
         </div>
 
-        {/*
-
-        <div className={"col-md-12 mt-2 " + (this.state.collapsed ? "collapse" : "")}>
-          <div className="container-fluid">
-
-            <ProgressBar visible={this.props.gettingResults}/>
-
-            <Results
-              visible={!this.props.gettingResults}
-              data={this.props.data}
-              sourceId={this.props.sourceId}
-              urlId={this.props.id}
-              onSaveResult={this.props.onSaveResult}
-              onDeleteResult={this.props.onDeleteResult}
-            />
-
-          </div>
-        </div>
-
-        */}
-
       </div>
     );
   }
 }
 
-// UrlItem.propTypes = {};
+// TODO
+Article.propTypes = {};
 
-export default ArticleItem;
+export default Article;
