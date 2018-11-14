@@ -18,6 +18,21 @@ export default (sequelize, DataTypes) => {
         enabled: {
             type: DataTypes.BOOLEAN,
             defaultValue: true
+        },
+        loaded: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        viewed: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        read: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
         }
     }, {
         engine: 'MYISAM',

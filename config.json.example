@@ -1,5 +1,4 @@
 {
-  "tokenLife": 360000,
   "BodyParser": {
     "jsonLimit": "30mb"
   }

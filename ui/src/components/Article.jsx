@@ -53,9 +53,14 @@ class Article extends Component {
 
           </div>
 
-          <div className="col-md-9 text-muted pt-2" onClick={this.onToggle}>
+          <div className="col-md-7 text-muted pt-2" onClick={this.onToggle}>
             {this.props.name}
           </div>
+
+          <div className="col-md-2 text-muted pt-2" onClick={this.onToggle} title="Loaded / Viewed / Read">
+            {this.props.loaded} / {this.props.viewed} / {this.props.read}
+          </div>
+
           <div className="col-md-2 pt-1" role="group">
             <div className="pull-right">
               <Button className="btn btn-square btn-ghost-warning mr-1" size="sm" onClick={this.onEditArticle} disabled>Edit</Button>
@@ -87,6 +92,9 @@ Article.propTypes = {
   }).isRequired,
   name: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  loaded: PropTypes.number.isRequired,
+  viewed: PropTypes.number.isRequired,
+  read: PropTypes.number.isRequired,
   // onEditArticle: PropTypes.func.isRequired,
   onDeleteArticle: PropTypes.func.isRequired
 };

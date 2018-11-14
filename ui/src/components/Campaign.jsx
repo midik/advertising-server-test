@@ -59,6 +59,9 @@ class Campaign extends Component {
         name={article.name}
         content={article.content}
         status={article.enabled ? status.enabled : status.disabled}
+        loaded={article.loaded}
+        viewed={article.viewed}
+        read={article.read}
         onSaveArticle={this.props.onSaveArticle}
         onDeleteArticle={this.props.onDeleteArticle}
       />)
