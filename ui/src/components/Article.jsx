@@ -5,7 +5,6 @@ import {
   Button
 } from 'reactstrap';
 import PropTypes from "prop-types";
-import Campaign from "./Campaign";
 
 // import Results from './Results';
 // import ProgressBar from "./ProgressBar";
@@ -37,8 +36,8 @@ class Article extends Component {
 
   async onDeleteArticle() {
     if (this.state.sure) {
-      await this.props.onDeleteArticle(this.props.campaignId, this.props.id);
       this.setState({sure: false});
+      await this.props.onDeleteArticle(this.props.campaignId, this.props.id);
     } else {
       this.setState({sure: true});
     }
