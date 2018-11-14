@@ -1,4 +1,5 @@
 import api from './api';
+import pub from './public';
 import campaign from './campaign';
 import campaigns from './campaigns';
 import article from './article';
@@ -10,6 +11,7 @@ export default (router, env) => {
     router.prefix(`/${env}`);
 
     router.use('/api', api);
+    router.use('/public', pub);
 
     router.use('/campaign', campaign);
     router.use('/campaigns', campaigns);
