@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 import {
   Button
 } from 'reactstrap';
-import AddCampaign from "./AddCampaign";
+import PropTypes from "prop-types";
+import Campaign from "./Campaign";
 
 
 class AddArticle extends Component {
@@ -13,12 +14,12 @@ class AddArticle extends Component {
     this.state = {
       collapsed: true,
       isValid: false,
-      link: ''
+      name: ''
     };
 
     this.onToggle = this.onToggle.bind(this);
     this.onNameChange = this.onNameChange.bind(this);
-    this.onSaveUrl = this.onSaveUrl.bind(this);
+    this.onSaveArticle = this.onSaveArticle.bind(this);
   }
 
   onToggle() {
@@ -27,13 +28,13 @@ class AddArticle extends Component {
 
   onNameChange(e) {
     this.setState({
-      link: e.target.value,
+      name: e.target.value,
       isValid: !!e.target.value
     });
   }
 
-  async onSaveUrl() {
-    await this.props.onSaveUrl(this.props.sourceId, this.state.link);
+  async onSaveArticle() {
+    await this.props.onSaveArticle(this.props.campaignId, this.state.name);
     this.setState({collapsed: true});
   }
 
@@ -45,7 +46,7 @@ class AddArticle extends Component {
       <div className="mt-1">
         <div className={`row mb-1 ${!this.state.collapsed ? "collapse" : ""}`}>
           <div className="col-md-12">
-            <Button className="btn btn-sm btn-square btn-outline-success pull-right" onClick={this.onToggle}>Add URL</Button>
+            <Button className="btn btn-sm btn-square btn-outline-success pull-right" onClick={this.onToggle}>Add article</Button>
           </div>
         </div>
 
@@ -55,16 +56,16 @@ class AddArticle extends Component {
             <form className="form-row">
 
               <div className="col-8 offset-1">
-                <label className="sr-only" htmlFor="urlLink">Link</label>
+                <label className="sr-only" htmlFor="name">Name</label>
                 <input type="text" className={`form-control mb-2 mr-sm-2 ${this.state.isValid ? "is-valid" : "is-invalid"}`}
-                       id="urlLink" placeholder="Link" onChange={this.onNameChange} value={this.state.link} />
+                       id="name" placeholder="Name" onChange={this.onNameChange} value={this.state.name} />
                 <div className="valid-feedback">Looks good!</div>
-                <div className="invalid-feedback">Please provide a link</div>
+                <div className="invalid-feedback">Please provide a name</div>
               </div>
 
               <div className="col-3" role="group">
                 <div className="pull-right">
-                  <Button className="btn btn-square btn-sm btn-outline-success mb-2 pull-right" disabled={!this.state.isValid} onClick={this.onSaveUrl}>&nbsp;OK&nbsp;</Button>
+                  <Button className="btn btn-square btn-sm btn-outline-success mb-2 pull-right" disabled={!this.state.isValid} onClick={this.onSaveArticle}>&nbsp;OK&nbsp;</Button>
                   <Button className="btn btn-square btn-sm btn-ghost-danger mb-2 mr-1 pull-right" onClick={this.onToggle}>Cancel</Button>
                 </div>
               </div>
@@ -78,7 +79,10 @@ class AddArticle extends Component {
   }
 }
 
-// TODO
-AddArticle.propTypes = {};
+
+AddArticle.propTypes = {
+  campaignId: PropTypes.string.isRequired,
+  onSaveArticle: PropTypes.func.isRequired
+};
 
 export default AddArticle;

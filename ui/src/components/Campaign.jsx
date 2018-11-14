@@ -15,6 +15,7 @@ import status from '../lib/statuses';
 import Article from './Article';
 // import RuleItem from './RuleItem';
 import AddArticle from './AddArticle';
+import PropTypes from "prop-types";
 // import Options from './Options';
 
 
@@ -31,21 +32,16 @@ class Campaign extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.onToggle = this.onToggle.bind(this);
-    this.onStart = this.onStart.bind(this);
-    this.onDeleteSource = this.onDeleteSource.bind(this);
+    this.onDeleteCampaign = this.onDeleteCampaign.bind(this);
   }
 
   onToggle() {
     this.setState({collapsed: !this.state.collapsed});
   }
 
-  onStart() {
-    this.props.onStart(this.props.id);
-  }
-
-  onDeleteSource() {
+  onDeleteCampaign() {
     if (this.state.sure) {
-      this.props.onDeleteSource(this.props.id);
+      this.props.onDeleteCampaign(this.props.id);
       this.setState({sure: false});
     } else {
       this.setState({sure: true});
@@ -63,14 +59,14 @@ class Campaign extends Component {
 
   render() {
 
-    const urlLines = Object.entries(this.props.articles).map(([id, article]) =>
+    const articleItems = Object.entries(this.props.articles).map(([id, article]) =>
       (<Article
         key={id}
         id={id}
         campaignId={this.props.id}
         name={article.name}
-        gettingResults={article.gettingResults || false}
-        status={article.status || status.idle}
+        content={article.content}
+        status={article.enabled ? status.enabled : status.disabled}
         onSaveArticle={this.props.onSaveArticle}
         onDeleteArticle={this.props.onDeleteArticle}
       />)
@@ -117,18 +113,10 @@ class Campaign extends Component {
               <TabContent activeTab={this.state.activeTab}>
 
                 <TabPane tabId="1">
-                  {urlLines.length ? urlLines :
-                    <div className="col-md-12 loading">No URLs here</div>
+                  {articleItems.length ? articleItems :
+                    <div className="col-md-12 loading">No articles here</div>
                   }
-                  <AddArticle sourceId={this.props.id} onSaveUrl={this.props.onSaveUrl} />
-                </TabPane>
-
-                <TabPane tabId="2">
-                  <Article
-                    campaignId={this.props.id}
-                    article={this.props.article}
-                    onSaveRule={this.props.onSaveArticle}
-                  />
+                  <AddArticle campaignId={this.props.id} onSaveArticle={this.props.onSaveArticle} />
                 </TabPane>
 
                 <TabPane tabId="3">
@@ -146,7 +134,22 @@ class Campaign extends Component {
   }
 }
 
-// TODO
-Campaign.propTypes = {};
+
+Campaign.propTypes = {
+  id: PropTypes.string.isRequired,
+  status: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    style: PropTypes.string.isRequired,
+  }).isRequired,
+  articles: PropTypes.objectOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    enabled: PropTypes.bool.isRequired,
+    name: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired
+  })).isRequired,
+  onDeleteCampaign: PropTypes.func.isRequired,
+  onSaveArticle: PropTypes.func.isRequired,
+  onDeleteArticle: PropTypes.func.isRequired
+};
 
 export default Campaign;

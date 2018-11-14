@@ -50,12 +50,13 @@ class CampaignList extends Component {
 
         {campaignItems.length ? campaignItems : (!this.props.gettingCampaigns ? noCampaigns : '')}
 
-        <AddCampaign onSaveSource={this.props.onSaveCampaign} />
+        <AddCampaign onSaveCampaign={this.props.onSaveCampaign} />
 
       </div>
     );
   }
 }
+
 
 CampaignList.propTypes = {
   campaigns: PropTypes.objectOf(PropTypes.shape({
@@ -65,9 +66,11 @@ CampaignList.propTypes = {
     articles: PropTypes.object.isRequired
   })).isRequired,
   onRefresh: PropTypes.func.isRequired,
+  onSaveCampaign: PropTypes.func.isRequired,
   onDeleteCampaign: PropTypes.func.isRequired,
   onSaveArticle: PropTypes.func.isRequired,
-  onDeleteArticle: PropTypes.func.isRequired
+  onDeleteArticle: PropTypes.func.isRequired,
+  gettingCampaigns: PropTypes.bool.isRequired
 };
 
 export default CampaignList;

@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 import {
   Button
 } from 'reactstrap';
-import Article from "./Article";
+import PropTypes from "prop-types";
+import AddArticle from "./AddArticle";
 
 
 class AddCampaign extends Component {
@@ -18,7 +19,7 @@ class AddCampaign extends Component {
 
     this.onToggle = this.onToggle.bind(this);
     this.onNameChange = this.onNameChange.bind(this);
-    this.onSaveSource = this.onSaveSource.bind(this);
+    this.onSaveCampaign = this.onSaveCampaign.bind(this);
   }
 
   onToggle() {
@@ -32,8 +33,8 @@ class AddCampaign extends Component {
     });
   }
 
-  async onSaveSource() {
-    await this.props.onSaveSource(this.state.name);
+  async onSaveCampaign() {
+    await this.props.onSaveCampaign(this.state.name);
     this.setState({collapsed: true});
   }
 
@@ -45,8 +46,7 @@ class AddCampaign extends Component {
       <div>
         <div className={`row mb-1 ${!this.state.collapsed ? "collapse" : ""}`}>
           <div className="col-md-12">
-            <Button className="btn btn-square btn-outline-success pull-right" size="sm" onClick={this.onToggle}>Add
-              Source</Button>
+            <Button className="btn btn-square btn-outline-success pull-right" size="sm" onClick={this.onToggle}>Add Campaign</Button>
           </div>
         </div>
 
@@ -56,9 +56,9 @@ class AddCampaign extends Component {
             <form className="form-row">
 
               <div className="col-7">
-                <label className="sr-only" htmlFor="sourceName">Name</label>
+                <label className="sr-only" htmlFor="campaignName">Name</label>
                 <input type="text" className={`form-control mb-2 mr-sm-2 ${this.state.isValid ? "is-valid" : "is-invalid"}`}
-                       id="sourceName" placeholder="Source name" onChange={this.onNameChange} value={this.state.name}/>
+                       id="campaignName" placeholder="Campaign name" onChange={this.onNameChange} value={this.state.name}/>
                 <div className="valid-feedback">Looks good!</div>
                 <div className="invalid-feedback">Please provide a name</div>
 
@@ -66,7 +66,7 @@ class AddCampaign extends Component {
 
               <div className="col-5" role="group">
                 <div className="pull-right">
-                  <Button className="btn btn-square btn-outline-success mb-2 pull-right" size="sm" disabled={!this.state.isValid} onClick={this.onSaveSource}>&nbsp;OK&nbsp;</Button>
+                  <Button className="btn btn-square btn-outline-success mb-2 pull-right" size="sm" disabled={!this.state.isValid} onClick={this.onSaveCampaign}>&nbsp;OK&nbsp;</Button>
                   <Button className="btn btn-square btn-ghost-danger mb-2 mr-1 pull-right" size="sm" onClick={this.onToggle}>Cancel</Button>
                 </div>
               </div>
@@ -80,7 +80,9 @@ class AddCampaign extends Component {
   }
 }
 
-// TODO
-AddCampaign.propTypes = {};
+
+AddCampaign.propTypes = {
+  onSaveCampaign: PropTypes.func.isRequired
+};
 
 export default AddCampaign;

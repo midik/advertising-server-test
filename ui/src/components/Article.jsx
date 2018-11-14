@@ -4,6 +4,8 @@ import {
   Badge,
   Button
 } from 'reactstrap';
+import PropTypes from "prop-types";
+import Campaign from "./Campaign";
 
 // import Results from './Results';
 // import ProgressBar from "./ProgressBar";
@@ -55,7 +57,7 @@ class Article extends Component {
               <div className="row no-gutters">
                 <span className="col-6">{this.props.id}</span>
                 <span className="col-6">
-                  {/*<Badge color={this.props.status.style}>{this.props.status.name}</Badge>*/}
+                  <Badge color={this.props.status.style}>{this.props.status.name}</Badge>
                 </span>
               </div>
             </div>
@@ -63,7 +65,7 @@ class Article extends Component {
           </div>
 
           <div className="col-md-9 text-muted pt-2" onClick={this.onToggle}>
-            {this.props.article}
+            {this.props.name}
           </div>
           <div className="col-md-2 pt-1" role="group">
             <div className="pull-right">
@@ -78,7 +80,18 @@ class Article extends Component {
   }
 }
 
-// TODO
-Article.propTypes = {};
+
+Article.propTypes = {
+  id: PropTypes.string.isRequired,
+  campaignId: PropTypes.string.isRequired,
+  status: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    style: PropTypes.string.isRequired,
+  }).isRequired,
+  name: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  // onEditArticle: PropTypes.func.isRequired,
+  onDeleteArticle: PropTypes.func.isRequired
+};
 
 export default Article;
