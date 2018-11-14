@@ -21,10 +21,5 @@ export default (sequelize, DataTypes) => {
         timestamps: false
     });
 
-    // sequelize.models.article.hasMany(Campaign, {
-    //     as: 'campaigns',
-    //     foreignKey: 'campaign_id'
-    // });
-
     return Campaign;
 };

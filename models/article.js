@@ -26,15 +26,13 @@ export default (sequelize, DataTypes) => {
     });
 
     Article.belongsTo(sequelize.models.campaign, {
-        through: 'campaign_id'
+        through: 'campaignId'
     });
 
-
-    //
-    //
-    // Url.belongsTo(sequelize.models.source, {
-    //     through: 'source_id'
-    // });
+    sequelize.models.campaign.hasMany(Article, {
+        as: 'articles',
+        foreignKey: 'campaignId'
+    });
 
     return Article;
 };

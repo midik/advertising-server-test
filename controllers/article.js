@@ -21,7 +21,7 @@ export const get = async (ctx) => {
  */
 export const post = async (ctx) => {
 
-    const campaignId = op.get(ctx, 'params.id');
+    const campaignId = op.get(ctx, 'request.body.campaignId');
     const name = op.get(ctx, 'request.body.name');
     const content = op.get(ctx, 'request.body.content');
 
@@ -39,18 +39,22 @@ export const post = async (ctx) => {
  */
 export const put = async (ctx) => {
 
+    const id = op.get(ctx, 'params.id');
     const name = op.get(ctx, 'request.body.name');
     const content = op.get(ctx, 'request.body.content');
+    const enabled = op.get(ctx, 'request.body.enabled');
 
     // TODO validation
 
     const item = new Article();
-    if (!item) throw new Error('Bad article id');
-
-    if (!name) item.name = name;
-    if (!content) item.content = content;
 
     await item.fetch(id);
+    if (!item) throw new Error('Bad article id');
+
+    if (name) item.name = name;
+    if (content) item.content = content;
+    if (enabled) item.enabled = enabled;
+
     await item.save();
 
     ctx.ok(item);

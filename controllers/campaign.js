@@ -38,18 +38,20 @@ export const post = async (ctx) => {
  */
 export const put = async (ctx) => {
 
+    const id = op.get(ctx, 'params.id');
     const name = op.get(ctx, 'request.body.name');
-    const status = op.get(ctx, 'request.body.status');
+    const enabled = op.get(ctx, 'request.body.enabled');
 
     // TODO validation
 
     const item = new Campaign();
-    if (!item) throw new Error('Bad campaign id');
-
-    if (!name) item.name = name;
-    if (!status) item.status = status;
 
     await item.fetch(id);
+    if (!item) throw new Error('Bad campaign id');
+
+    if (name) item.name = name;
+    if (enabled) item.enabled = enabled === 'true';
+
     await item.save();
 
     ctx.ok(item);
