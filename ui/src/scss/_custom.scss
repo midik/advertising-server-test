@@ -1,0 +1,41 @@
+// Here you can add other styles
+
+@import '~highlight.js/styles/mono-blue.css';
+//@import '~bootstrap4-notify';
+
+.pointer {
+  cursor: pointer;
+}
+
+button.disabled {
+  cursor: not-allowed;
+}
+
+.hover:hover {
+  background: #d6ecf7;
+}
+
+.progress.progress-xs {
+  height: 1px;
+}
+
+.ruleEditor {
+  height: 380px;
+
+  .codeflask {
+    background: #ebedf2;
+    //max-width: 98%;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.progress-bar-thin {
+  height: 5px;
+}
+
+.result-viewer pre {
+  margin-bottom: 2px;
+}

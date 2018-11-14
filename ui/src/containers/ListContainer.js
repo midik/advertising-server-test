@@ -16,7 +16,8 @@ import List from '../components/List';
 function mapStateToProps(state) {
   return {
     campaigns: getCampaignsList(state),
-    gettingCampaigns: state.gettingCampaigns
+    gettingCampaigns: state.gettingCampaigns,
+    errors: state.errors
   };
 }
 
